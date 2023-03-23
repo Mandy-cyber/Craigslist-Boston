@@ -91,14 +91,16 @@ def gig_earnings(hrs_per_gig=1):
         #-------------
         # navigate to the next gig
         try:
-            # does the next gig exist (i.e.'next' button shows up and is clickable)
             next_arrow = browser.find_element(By.CLASS_NAME, 'next')
             old_url = browser.current_url
             next_arrow.click()
             
-            if browser.current_url != old_url: # clicking shows a new page
+            # does the next gig exist
+            if browser.current_url != old_url: 
+                # clicking shows a new page
                 time.sleep(round(random.uniform(0.5,1.5), 2)) # how long to wait before doing next request
-            else: # clicking shows the same page
+            else: 
+                # clicking shows the same page
                 moreGigs = False
         except:
             # no more gigs to look at
@@ -120,5 +122,5 @@ def gig_earnings(hrs_per_gig=1):
 #---------------------------------------------------------------------------------------
 # RUNNING & USER INPUT
 #-----------------------------
-hrs = input("How many hours would you be working on each gig (ideally)? ")
+hrs = input("How many hours would you be working on each gig (ideally)? ") # can comment this out and leave it to default
 final_price = gig_earnings(hrs_per_gig=int(hrs))
